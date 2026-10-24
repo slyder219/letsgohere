@@ -1,0 +1,20 @@
+:root {
+  --bg: #f7f5f0;
+  --fg: #1f2328;
+  --muted: #5c6370;
+  --accent: #2f6f8f;
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #16181c; --fg: #e8e6e3; --muted: #9aa0a6; --accent: #7cb7d4; }
+}
+body { margin: 0; background: var(--bg); color: var(--fg); }
+main { max-width: 40rem; margin: 0 auto; padding: 2rem 1rem; }
+a { color: var(--accent); }
+.tagline { color: var(--muted); font-size: 1.15rem; }
+.trips { font-size: 1.25rem; }
+form { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 2rem; }
+input, button { font: inherit; padding: 0.4rem 0.7rem; }
+.error { color: #c0392b; width: 100%; }
