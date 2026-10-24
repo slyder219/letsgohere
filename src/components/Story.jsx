@@ -19,6 +19,7 @@ export default function Story() {
         <button className="button" onClick={() => navigate(`${trip.id}/explore`)}>
           Browse every option <Icon name="next" size={16} />
         </button>
+        <PhotoCredits />
       </footer>
     </>
   );
@@ -35,7 +36,7 @@ function Hero({ intro, first }) {
         <p className="hero-kicker">
           {TRIP_STATUS[trip.status] ?? trip.status} · {trip.window.label ?? 'Dates TBD'}
         </p>
-        <h1 className="hero-title">{name}</h1>
+        <h1 className={`hero-title${name.length > 14 ? ' hero-title-long' : ''}`}>{name}</h1>
         {subtitle && <p className="hero-subtitle">{subtitle}</p>}
         <p className="hero-headline">{trip.introduction.headline}</p>
         {trip.introduction.highlights.length > 0 && (
@@ -95,6 +96,7 @@ function Chapter({ section: s, number }) {
       {lead && (
         <figure className="chapter-media">
           <Img media={lead} />
+          <Credit media={lead} />
         </figure>
       )}
       <div className="chapter-body">
@@ -136,12 +138,37 @@ function Chapter({ section: s, number }) {
           {gallery.map((m) => (
             <figure role="listitem" key={m.id}>
               <Img media={m} />
-              {m.credit && <figcaption>{m.credit}</figcaption>}
+              <Credit media={m} />
             </figure>
           ))}
         </div>
       )}
     </section>
+  );
+}
+
+function Credit({ media }) {
+  if (!media?.credit) return null;
+  return <figcaption className="credit">Photo: {[media.credit, media.license].filter(Boolean).join(' · ')}</figcaption>;
+}
+
+// attribution for every credited image, including the hero, which has no caption of its own
+function PhotoCredits() {
+  const { trip } = useTrip();
+  const credited = trip.media.filter((m) => m.credit);
+  if (!credited.length) return null;
+  return (
+    <details className="photo-credits">
+      <summary>Photo credits</summary>
+      <ul>
+        {credited.map((m) => (
+          <li key={m.id}>
+            {m.alt} — {m.credit}
+            {m.license && ` (${m.license})`}
+          </li>
+        ))}
+      </ul>
+    </details>
   );
 }
 

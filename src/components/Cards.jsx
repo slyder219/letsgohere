@@ -81,7 +81,7 @@ export function StayCard({ stay }) {
         <span className="card-kicker">{humanize(stay.kind)} · {trip.get('place', stay.place_id)?.name}</span>
       </div>
       <h3>{stay.name}</h3>
-      <p className="card-foot">{stay.nights == null ? 'Nights TBD' : `${stay.nights} nights`}</p>
+      <p className="card-foot">{stay.nights == null ? 'Nights TBD' : `${stay.nights} night${stay.nights === 1 ? '' : 's'}`}</p>
     </button>
   );
 }

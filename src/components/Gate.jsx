@@ -2,11 +2,13 @@ import { useState } from 'react';
 import Icon from './Icon.jsx';
 import { login } from '../lib/api.js';
 import { Link } from '../lib/router.jsx';
+import { splitTitle } from '../lib/trip.js';
 
 export default function Gate({ summary, onToken }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [name, subtitle] = splitTitle(summary.title);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -30,7 +32,8 @@ export default function Gate({ summary, onToken }) {
       </Link>
       <form className="gate-card" onSubmit={submit}>
         <p className="hero-kicker">{summary.when}</p>
-        <h1 className="hero-title">{summary.title}</h1>
+        <h1 className={`hero-title${name.length > 14 ? ' hero-title-long' : ''}`}>{name}</h1>
+        {subtitle && <p className="hero-subtitle">{subtitle}</p>}
         <p className="gate-text">This trip is shared with friends. Enter the password you were sent.</p>
         {/* a username field lets iOS save the password to the keychain */}
         <input type="text" name="username" autoComplete="username" value="friends" readOnly hidden />

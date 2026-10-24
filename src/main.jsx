@@ -4,6 +4,7 @@ import './style.css';
 import TripView from './components/TripView.jsx';
 import Icon from './components/Icon.jsx';
 import { listTrips } from './lib/api.js';
+import { splitTitle } from './lib/trip.js';
 import { Link, useLocation } from './lib/router.jsx';
 
 // The trip list comes from the Worker, so adding a trip folder there is enough to give it a page here.
@@ -68,7 +69,7 @@ function Home({ trips }) {
               <div className="hero-shade" />
               <div className="trip-card-body">
                 <p className="hero-kicker">{t.when}</p>
-                <h2>{t.title}</h2>
+                <h2>{splitTitle(t.title)[0]}</h2>
                 <p>{t.tagline}</p>
                 <span className="trip-card-go">
                   Open <Icon name="next" size={16} />

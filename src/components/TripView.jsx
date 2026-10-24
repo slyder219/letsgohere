@@ -57,7 +57,7 @@ function Loading({ summary }) {
       {summary.hero && <img className="hero-img" src={summary.hero} alt="" />}
       <div className="hero-shade" />
       <div className="hero-body">
-        <h1 className="hero-title">{summary.title}</h1>
+        <h1 className="hero-title hero-title-long">{splitTitle(summary.title)[0]}</h1>
         <p className="hero-headline">Loading the plan…</p>
       </div>
     </div>
