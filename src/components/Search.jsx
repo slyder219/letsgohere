@@ -7,7 +7,18 @@ const TYPE = {
   section: ['Chapter', 'story'], activity: ['Activity', 'mountain'], place: ['Place', 'place'], leg: ['Travel', 'drive'],
   stay: ['Stay', 'stay'], cost: ['Cost', 'money'], choice: ['Decision', 'choice'], gear: ['Gear', 'gear'], source: ['Source', 'source'],
 };
-const SUGGESTIONS = ['How hard is Base Torres?', 'What does it cost?', 'Glacier', 'Do we need a guide?', 'Where do we sleep?', 'Wildlife'];
+// built from the trip itself, so every trip gets suggestions that have answers
+function suggestions(trip) {
+  const pick = trip.activities.find((a) => a.selection === 'selected' && a.kind === 'hike') ?? trip.activities[0];
+  return [
+    pick && `How hard is ${pick.title}?`,
+    trip.budget.items.length && 'What does it cost?',
+    trip.stays.length && 'Where do we sleep?',
+    trip.gear.length && 'What should I pack?',
+    trip.activities.some((a) => a.guide) && 'Do we need a guide?',
+    trip.flow.some((s) => /weather/i.test(s.title)) && 'Weather',
+  ].filter(Boolean);
+}
 
 export default function Search({ query, setQuery }) {
   const { trip, open, goToSection } = useTrip();
@@ -36,9 +47,9 @@ export default function Search({ query, setQuery }) {
 
       {!q.trim() ? (
         <div className="search-empty">
-          <p>Ask about anything: hikes, costs, gear, getting there.</p>
+          <p>Search anything in the plan.</p>
           <div className="chips">
-            {SUGGESTIONS.map((s) => (
+            {suggestions(trip).map((s) => (
               <button key={s} className="chip" onClick={() => setQuery(s)}>
                 {s}
               </button>

@@ -54,7 +54,7 @@ export const GUIDE = {
 
 export const SECTION_KIND = {
   intro: 'The idea', route: 'Getting there', chapter: 'Chapter', lodging: 'Where we stay', activities: 'What we do',
-  gear: 'Packing', budget: 'Costs', decision: 'To decide', join: 'Join us',
+  gear: 'Packing', budget: 'Costs', decision: 'To decide', join: 'Interested?',
 };
 
 export const TRIP_STATUS = { idea: 'Idea', planning: 'Planning', scheduled: 'Scheduled', completed: 'Completed', cancelled: 'Cancelled' };

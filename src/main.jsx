@@ -59,7 +59,7 @@ function Home({ trips }) {
     <main className="home">
       <header className="home-head">
         <h1>Let's Go Here</h1>
-        <p>Trips I'm planning. Come along.</p>
+        <p>Trips I'm thinking about.</p>
       </header>
       <ul className="home-list" aria-busy={!trips}>
         {(trips ?? []).map((t) => (

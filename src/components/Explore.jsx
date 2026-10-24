@@ -19,7 +19,7 @@ export default function Explore({ tab, setTab }) {
     <div className="explore">
       <header className="page-head">
         <h1>Explore</h1>
-        <p>Every option we've looked at, with the details.</p>
+        <p>Everything in one place.</p>
       </header>
       <nav className="segments" aria-label="Explore sections">
         {tabs.map(([id, label]) => (

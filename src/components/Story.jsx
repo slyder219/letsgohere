@@ -15,9 +15,9 @@ export default function Story() {
         <Chapter key={s.id} section={s} number={i + 1} />
       ))}
       <footer className="story-end">
-        <p>That's the plan so far. Everything marked <em>Proposed</em> or <em>Estimate</em> can still change.</p>
+        <p>That's it for now. Anything marked <em>Proposed</em> or <em>Estimate</em> can still change.</p>
         <button className="button" onClick={() => navigate(`${trip.id}/explore`)}>
-          Browse every option <Icon name="next" size={16} />
+          All the details <Icon name="next" size={16} />
         </button>
         <PhotoCredits />
       </footer>
@@ -63,7 +63,7 @@ function QuickFacts({ intro }) {
     ['When', w.start_date && w.end_date ? `${w.start_date} – ${w.end_date}` : w.label ?? 'TBD'],
     ['How long', w.duration_days ? `About ${w.duration_days} days` : 'TBD'],
     ['From', trip.group.origin_label ?? 'TBD'],
-    ['Group', trip.group.size ? `${trip.group.size} people` : 'Open — join us'],
+    ['Group', trip.group.size ? `${trip.group.size} people` : 'TBD'],
   ];
   return (
     <section className="quick">
@@ -183,9 +183,8 @@ function Join() {
   };
   return (
     <div className="join">
-      <p>Interested, even loosely? Tell me — dates and plans get shaped around who's in.</p>
       <button className="button" onClick={share}>
-        <Icon name="share" size={18} /> Share this trip
+        <Icon name="share" size={18} /> Share link
       </button>
     </div>
   );

@@ -34,7 +34,7 @@ export default function Gate({ summary, onToken }) {
         <p className="hero-kicker">{summary.when}</p>
         <h1 className={`hero-title${name.length > 14 ? ' hero-title-long' : ''}`}>{name}</h1>
         {subtitle && <p className="hero-subtitle">{subtitle}</p>}
-        <p className="gate-text">This trip is shared with friends. Enter the password you were sent.</p>
+        <p className="gate-text">Enter the password I sent you.</p>
         {/* a username field lets iOS save the password to the keychain */}
         <input type="text" name="username" autoComplete="username" value="friends" readOnly hidden />
         <label htmlFor="password" className="visually-hidden">Password</label>
