@@ -2,10 +2,9 @@ import { StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
-// TODO: confirm against the workers.dev URL shown in the Cloudflare dashboard
 const WORKER_URL = import.meta.env.DEV
   ? 'http://localhost:8787'
-  : 'https://letsgohere-worker.slyder219.workers.dev';
+  : 'https://letsgohere-worker.seanlyder.workers.dev';
 
 const TRIPS = [{ id: 'patagonia', name: 'Patagonia' }];
 
