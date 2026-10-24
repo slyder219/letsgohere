@@ -50,10 +50,10 @@ function Trip({ id }) {
       <main>
         <a href={BASE}>← All trips</a>
         <h1>{trip.title}</h1>
-        <p className="tagline">{trip.tagline}</p>
-        <p><strong>When:</strong> {trip.when}</p>
-        <ul>{trip.highlights.map((h) => <li key={h}>{h}</li>)}</ul>
-        {trip.notes && <p>{trip.notes}</p>}
+        <p className="tagline">{trip.introduction.headline}</p>
+        <p>{trip.introduction.summary}</p>
+        <p><strong>When:</strong> {trip.window.label}</p>
+        <ul>{trip.introduction.highlights.map((h) => <li key={h}>{h}</li>)}</ul>
       </main>
     );
   }
