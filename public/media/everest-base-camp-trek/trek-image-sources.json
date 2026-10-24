@@ -1,0 +1,380 @@
+{
+  "reviewed_on": "2026-10-24",
+  "image_count": 10,
+  "scope": "Ten additional trek-experience photos only. Existing Base Camp images are unchanged and not covered by this manifest.",
+  "purpose": "Show everyday trekking, villages, bridges, lodge rooms and rest stops on the Nepal Everest Base Camp journey.",
+  "usage_notes": [
+    "These are along the trek, not photographs taken at Base Camp itself.",
+    "Historical photographs: infrastructure, rooms, businesses and trail conditions may have changed.",
+    "Display the supplied creator/source/license credits when publishing. CC BY-SA images retain their respective share-alike licenses.",
+    "No image was upscaled beyond its original dimensions. Most available renditions are 1280 pixels wide; the portrait bridge photo is limited to 1600 pixels high.",
+    "Namche-area trail photo shows the broader trekking/acclimatization experience, not a promised exact itinerary segment."
+  ],
+  "images": [
+    {
+      "file": "larja-suspension-bridge-dudh-koshi.webp",
+      "alt": "A suspension bridge spans the steep Dudh Koshi gorge below Namche Bazaar.",
+      "location": "Larja Bridge before Namche",
+      "category": "trek-experience",
+      "width": 767,
+      "height": 1600,
+      "bytes": 491964,
+      "sha256": "db9f28d53d2d94cc5b5e65c999718c09a8529f8fde6757775536dbffa1e1abfe",
+      "source_title": "Nepal - Sagamartha Trek - Larja Bridge (493525761).jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Nepal_-_Sagamartha_Trek_-_Larja_Bridge_(493525761).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Nepal_-_Sagamartha_Trek_-_Larja_Bridge_%28493525761%29.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Nepal_-_Sagamartha_Trek_-_Larja_Bridge_%28493525761%29.jpg/1280px-Nepal_-_Sagamartha_Trek_-_Larja_Bridge_%28493525761%29.jpg",
+      "source_original_dimensions": [
+        1874,
+        3911
+      ],
+      "downloaded_dimensions": [
+        1280,
+        2671
+      ],
+      "creator": "McKay Savage from London, UK",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_required": true,
+      "attribution": "Nepal - Sagamartha Trek - Larja Bridge (493525761).jpg — McKay Savage from London, UK; CC BY 2.0 (https://creativecommons.org/licenses/by/2.0); source: https://commons.wikimedia.org/wiki/File:Nepal_-_Sagamartha_Trek_-_Larja_Bridge_(493525761).jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2007-05-10 21:28",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "high",
+        "evidence": "Photographer caption names Larja Bridge and its position before the Namche ascent; published camera coordinates provide supporting evidence. This is the historical 2007 bridge scene.",
+        "coordinates_from_source": {
+          "latitude": "27.791833",
+          "longitude": "86.718480"
+        },
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "namche-bazaar-village-terraces.webp",
+      "alt": "Colorful rooftops and terraces fill the bowl-shaped village of Namche Bazaar.",
+      "location": "Namche Bazaar",
+      "category": "trek-experience",
+      "width": 1280,
+      "height": 960,
+      "bytes": 399728,
+      "sha256": "84f8446778df0a61ebf280e65d5e9445bc240dd4612ddde3758cd28152cc23bf",
+      "source_title": "Nepal - Sagamartha Trek - 054 - Namche Bazaar (497606626).jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Nepal_-_Sagamartha_Trek_-_054_-_Namche_Bazaar_(497606626).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Nepal_-_Sagamartha_Trek_-_054_-_Namche_Bazaar_%28497606626%29.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/Nepal_-_Sagamartha_Trek_-_054_-_Namche_Bazaar_%28497606626%29.jpg/1280px-Nepal_-_Sagamartha_Trek_-_054_-_Namche_Bazaar_%28497606626%29.jpg",
+      "source_original_dimensions": [
+        2592,
+        1944
+      ],
+      "downloaded_dimensions": [
+        1280,
+        960
+      ],
+      "creator": "McKay Savage from London, UK",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_required": true,
+      "attribution": "Nepal - Sagamartha Trek - 054 - Namche Bazaar (497606626).jpg — McKay Savage from London, UK; CC BY 2.0 (https://creativecommons.org/licenses/by/2.0); source: https://commons.wikimedia.org/wiki/File:Nepal_-_Sagamartha_Trek_-_054_-_Namche_Bazaar_(497606626).jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2007-04-18 12:44",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "high",
+        "evidence": "First-person photographer caption names Namche; coordinates and the visible village layout are consistent.",
+        "coordinates_from_source": {
+          "latitude": "27.810325",
+          "longitude": "86.708151"
+        },
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "namche-bazaar-shopping-street.webp",
+      "alt": "A narrow stone-paved shopping street lined with shops and trekking supplies in Namche Bazaar.",
+      "location": "Namche Bazaar",
+      "category": "trek-experience",
+      "width": 1280,
+      "height": 853,
+      "bytes": 218842,
+      "sha256": "b7409cbab45542fde52a716be0c634748c47d9a87fdad523cb450424109ef91e",
+      "source_title": "Namche Bazaar, Shopping street, Nepal.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Namche_Bazaar,_Shopping_street,_Nepal.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Namche_Bazaar%2C_Shopping_street%2C_Nepal.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Namche_Bazaar%2C_Shopping_street%2C_Nepal.jpg/1280px-Namche_Bazaar%2C_Shopping_street%2C_Nepal.jpg",
+      "source_original_dimensions": [
+        4032,
+        2688
+      ],
+      "downloaded_dimensions": [
+        1280,
+        853
+      ],
+      "creator": "Vyacheslav Argenberg",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_required": true,
+      "attribution": "Namche Bazaar, Shopping street, Nepal.jpg — Vyacheslav Argenberg; CC BY 4.0 (https://creativecommons.org/licenses/by/4.0); source: https://commons.wikimedia.org/wiki/File:Namche_Bazaar,_Shopping_street,_Nepal.jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2009-10-23 11:29:41",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "high",
+        "evidence": "Creator caption explicitly identifies the shopping street in Namche Bazaar; visual content matches the described subject.",
+        "coordinates_from_source": null,
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "porter-on-trail-above-namche.webp",
+      "alt": "A porter walks along a dirt trail bordered by stone walls above Namche Bazaar.",
+      "location": "Trail above Namche Bazaar",
+      "category": "trek-experience",
+      "width": 1280,
+      "height": 960,
+      "bytes": 379154,
+      "sha256": "b5889e81de3a15d03655179e2efbc556a51367b4ab7e420ef1b484545f0b370c",
+      "source_title": "Nepal - Sagamartha Trek - 050 - porter on trail above Namche (497614590).jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Nepal_-_Sagamartha_Trek_-_050_-_porter_on_trail_above_Namche_(497614590).jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Nepal_-_Sagamartha_Trek_-_050_-_porter_on_trail_above_Namche_%28497614590%29.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Nepal_-_Sagamartha_Trek_-_050_-_porter_on_trail_above_Namche_%28497614590%29.jpg/1280px-Nepal_-_Sagamartha_Trek_-_050_-_porter_on_trail_above_Namche_%28497614590%29.jpg",
+      "source_original_dimensions": [
+        2592,
+        1944
+      ],
+      "downloaded_dimensions": [
+        1280,
+        960
+      ],
+      "creator": "McKay Savage from London, UK",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution_required": true,
+      "attribution": "Nepal - Sagamartha Trek - 050 - porter on trail above Namche (497614590).jpg — McKay Savage from London, UK; CC BY 2.0 (https://creativecommons.org/licenses/by/2.0); source: https://commons.wikimedia.org/wiki/File:Nepal_-_Sagamartha_Trek_-_050_-_porter_on_trail_above_Namche_(497614590).jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2007-04-18 12:22",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "high",
+        "evidence": "Photographer title locates the trail above Namche; caption describes the porter and camera coordinates corroborate the surrounding area. Not presented as an exact required itinerary segment.",
+        "coordinates_from_source": {
+          "latitude": "27.813079",
+          "longitude": "86.711478"
+        },
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "phakding-teahouse-twin-room.webp",
+      "alt": "A simple wood-paneled lodge room with two beds and trekking bags in Phakding.",
+      "location": "Khumbu Lodge, Phakding",
+      "category": "trek-experience",
+      "width": 1280,
+      "height": 853,
+      "bytes": 198104,
+      "sha256": "3f79900f0294b66060cf92af02b27874ad2b50c9b13dd43534e094dc3b68de26",
+      "source_title": "Phakding-14-Khumbu-Lodge-Zimmer-2007-gje.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Phakding-14-Khumbu-Lodge-Zimmer-2007-gje.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Phakding-14-Khumbu-Lodge-Zimmer-2007-gje.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Phakding-14-Khumbu-Lodge-Zimmer-2007-gje.jpg/1280px-Phakding-14-Khumbu-Lodge-Zimmer-2007-gje.jpg",
+      "source_original_dimensions": [
+        3072,
+        2048
+      ],
+      "downloaded_dimensions": [
+        1280,
+        853
+      ],
+      "creator": "Gerd Eichmann",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution_required": true,
+      "attribution": "Phakding-14-Khumbu-Lodge-Zimmer-2007-gje.jpg — Gerd Eichmann; CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0); source: https://commons.wikimedia.org/wiki/File:Phakding-14-Khumbu-Lodge-Zimmer-2007-gje.jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2007-10-29 17:39:25",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "medium-high",
+        "evidence": "Creator filename identifies Khumbu Lodge room in Phakding; caption identifies Phakding; visual inspection confirms a lodge bedroom. Historical example, not a current room guarantee.",
+        "coordinates_from_source": null,
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "pack-animal-and-handler-phakding-namche-trail.webp",
+      "alt": "A loaded pack animal and handler negotiate a rocky, wooded section of the Phakding–Namche trail.",
+      "location": "Phakding–Namche route",
+      "category": "trek-experience",
+      "width": 1280,
+      "height": 1083,
+      "bytes": 393966,
+      "sha256": "ee8396eac564a043d10dff79d0e7262312414421763446caf7764ce120c86bba",
+      "source_title": "Phakding-Namche-39-Yaktreiber-2007-gje.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Phakding-Namche-39-Yaktreiber-2007-gje.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Phakding-Namche-39-Yaktreiber-2007-gje.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Phakding-Namche-39-Yaktreiber-2007-gje.jpg/1280px-Phakding-Namche-39-Yaktreiber-2007-gje.jpg",
+      "source_original_dimensions": [
+        1920,
+        1624
+      ],
+      "downloaded_dimensions": [
+        1280,
+        1083
+      ],
+      "creator": "Gerd Eichmann",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution_required": true,
+      "attribution": "Phakding-Namche-39-Yaktreiber-2007-gje.jpg — Gerd Eichmann; CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0); source: https://commons.wikimedia.org/wiki/File:Phakding-Namche-39-Yaktreiber-2007-gje.jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2007-11-15 13:57:20",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "high",
+        "evidence": "Creator caption explicitly places the image on the Phakding-to-Namche route; photo shows a pack animal and people on a stone trail. Animal breed is not asserted.",
+        "coordinates_from_source": null,
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "tengboche-monastery-courtyard.webp",
+      "alt": "The colorful facade and open courtyard of Tengboche Monastery on the Everest Base Camp route.",
+      "location": "Tengboche Monastery",
+      "category": "trek-experience",
+      "width": 1280,
+      "height": 721,
+      "bytes": 189790,
+      "sha256": "0dd15e47175603d9460076c2de8a5743b4026feb9bd83941a66c35411e876be2",
+      "source_title": "Tengboche Monastery in Nepal, on the route of Everest Base camp trek, photographed on November 27, 2023.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Tengboche_Monastery_in_Nepal,_on_the_route_of_Everest_Base_camp_trek,_photographed_on_November_27,_2023.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Tengboche_Monastery_in_Nepal%2C_on_the_route_of_Everest_Base_camp_trek%2C_photographed_on_November_27%2C_2023.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Tengboche_Monastery_in_Nepal%2C_on_the_route_of_Everest_Base_camp_trek%2C_photographed_on_November_27%2C_2023.jpg/1280px-Tengboche_Monastery_in_Nepal%2C_on_the_route_of_Everest_Base_camp_trek%2C_photographed_on_November_27%2C_2023.jpg",
+      "source_original_dimensions": [
+        4000,
+        2252
+      ],
+      "downloaded_dimensions": [
+        1280,
+        721
+      ],
+      "creator": "Billjones94",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution_required": false,
+      "attribution": "Tengboche Monastery in Nepal, on the route of Everest Base camp trek, photographed on November 27, 2023.jpg — Billjones94; CC0 (http://creativecommons.org/publicdomain/zero/1.0/deed.en); source: https://commons.wikimedia.org/wiki/File:Tengboche_Monastery_in_Nepal,_on_the_route_of_Everest_Base_camp_trek,_photographed_on_November_27,_2023.jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2023-11-27 07:46:17",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "high",
+        "evidence": "Creator caption explicitly names Tengboche Monastery, the EBC route and 27 November 2023; architecture matches the subject.",
+        "coordinates_from_source": null,
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "dingboche-lodge-tea-time.webp",
+      "alt": "Two travelers sit at a lodge table with a thermos during tea time in Dingboche.",
+      "location": "Dingboche lodge",
+      "category": "trek-experience",
+      "width": 1280,
+      "height": 853,
+      "bytes": 167574,
+      "sha256": "a2e0f82ebb32e495f2a5341d91a859a3d6b08b209093069f56f7aff4430d2d44",
+      "source_title": "Dingboche-70-Lodge-Teestunde-2007-gje.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Dingboche-70-Lodge-Teestunde-2007-gje.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Dingboche-70-Lodge-Teestunde-2007-gje.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Dingboche-70-Lodge-Teestunde-2007-gje.jpg/1280px-Dingboche-70-Lodge-Teestunde-2007-gje.jpg",
+      "source_original_dimensions": [
+        3072,
+        2048
+      ],
+      "downloaded_dimensions": [
+        1280,
+        853
+      ],
+      "creator": "Gerd Eichmann",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution_required": true,
+      "attribution": "Dingboche-70-Lodge-Teestunde-2007-gje.jpg — Gerd Eichmann; CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0); source: https://commons.wikimedia.org/wiki/File:Dingboche-70-Lodge-Teestunde-2007-gje.jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2007-11-14 06:45:26",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "medium-high",
+        "evidence": "Creator filename identifies Dingboche lodge tea time; generic regional caption and indoor lodge setting support the description. Exact lodge name is not established.",
+        "coordinates_from_source": null,
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "rocky-trail-dingboche-to-lobuche.webp",
+      "alt": "A rocky trekking path crosses the open high-altitude landscape between Dingboche and Lobuche.",
+      "location": "Dingboche–Lobuche route",
+      "category": "trek-experience",
+      "width": 1200,
+      "height": 800,
+      "bytes": 149136,
+      "sha256": "282ab23b7db4cba8deacc806b232d2f272bf5115913cf2299dcbc3c7cc39e3b7",
+      "source_title": "Sagarmatha National Park-Dingboche to Lobuche 2013-05-04 11-46-31.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Sagarmatha_National_Park-Dingboche_to_Lobuche_2013-05-04_11-46-31.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Sagarmatha_National_Park-Dingboche_to_Lobuche_2013-05-04_11-46-31.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Sagarmatha_National_Park-Dingboche_to_Lobuche_2013-05-04_11-46-31.jpg/1280px-Sagarmatha_National_Park-Dingboche_to_Lobuche_2013-05-04_11-46-31.jpg",
+      "source_original_dimensions": [
+        1200,
+        800
+      ],
+      "downloaded_dimensions": [
+        1280,
+        853
+      ],
+      "creator": "Thomas Fuhrmann",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution_required": true,
+      "attribution": "Sagarmatha National Park-Dingboche to Lobuche 2013-05-04 11-46-31.jpg — Thomas Fuhrmann; CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0); source: https://commons.wikimedia.org/wiki/File:Sagarmatha_National_Park-Dingboche_to_Lobuche_2013-05-04_11-46-31.jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2013-05-04 11:46:31",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "high",
+        "evidence": "Photographer explicitly identifies day seven of the EBC trek, Dingboche to Lobuche, with camera coordinates; visible rocky path matches the route subject.",
+        "coordinates_from_source": {
+          "latitude": "27.930125",
+          "longitude": "86.804915"
+        },
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    },
+    {
+      "file": "gorak-shep-lodges-rocky-approach.webp",
+      "alt": "Trekkers follow a rocky path toward the lodges and sandy basin of Gorak Shep.",
+      "location": "Southern approach to Gorak Shep",
+      "category": "trek-experience",
+      "width": 1280,
+      "height": 960,
+      "bytes": 434608,
+      "sha256": "3738daa78cf4615a5096d038345c8c16bdebccd38569c3f4dd7513338e140e5e",
+      "source_title": "Approaching Gorak Shep from the South.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Approaching_Gorak_Shep_from_the_South.jpg",
+      "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Approaching_Gorak_Shep_from_the_South.jpg",
+      "downloaded_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Approaching_Gorak_Shep_from_the_South.jpg/1280px-Approaching_Gorak_Shep_from_the_South.jpg",
+      "source_original_dimensions": [
+        2880,
+        2160
+      ],
+      "downloaded_dimensions": [
+        1280,
+        960
+      ],
+      "creator": "LyndyB",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution_required": true,
+      "attribution": "Approaching Gorak Shep from the South.jpg — LyndyB; CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0); source: https://commons.wikimedia.org/wiki/File:Approaching_Gorak_Shep_from_the_South.jpg. Resized and compressed to WebP; no crop or scene alteration.",
+      "source_date": "2008-11-15",
+      "modifications": "Wikimedia thumbnail used; orientation normalized; RGB/sRGB conversion; proportional resize capped at 1600 pixels and original dimensions; WebP quality 82, no crop, no scene changes. Attribution embedded as XMP.",
+      "location_review": {
+        "confidence": "high",
+        "evidence": "Creator caption explicitly identifies the approach to Gorak Shep lodges from the south; visible settlement and approach trail corroborate it.",
+        "coordinates_from_source": {
+          "latitude": "27.980977",
+          "longitude": "86.828556"
+        },
+        "limitation": "Source caption/title, available metadata and visual consistency review; not an independent geolocation guarantee."
+      }
+    }
+  ]
+}

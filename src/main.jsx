@@ -1,77 +1,112 @@
-import { StrictMode, useEffect, useState } from 'react';
+import { Component, StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
+import TripView from './components/TripView.jsx';
+import Icon from './components/Icon.jsx';
+import { listTrips } from './lib/api.js';
+import { Link, useLocation } from './lib/router.jsx';
 
-const WORKER_URL = import.meta.env.DEV
-  ? 'http://localhost:8787'
-  : 'https://letsgohere-worker.seanlyder.workers.dev';
+// The trip list comes from the Worker, so adding a trip folder there is enough to give it a page here.
+function useTrips() {
+  const [state, setState] = useState({ trips: null, error: null });
+  const load = () => {
+    setState({ trips: null, error: null });
+    listTrips().then(
+      (trips) => setState({ trips, error: null }),
+      (e) => setState({ trips: null, error: e.message }),
+    );
+  };
+  useEffect(load, []);
+  return { ...state, retry: load };
+}
 
-const BASE = import.meta.env.BASE_URL;
-const TRIPS = [{ id: 'patagonia', name: 'Patagonia' }];
+function App() {
+  const { parts, params } = useLocation();
+  const { trips, error, retry } = useTrips();
+  const summary = trips?.find((t) => t.id === parts[0]);
+  const view = ['explore', 'search'].includes(parts[1]) ? parts[1] : '';
 
-function Home() {
+  useEffect(() => {
+    if (!parts.length) document.title = "Let's Go Here";
+  }, [parts.length]);
+
+  if (error)
+    return (
+      <div className="center-screen">
+        <p>{error}</p>
+        <button className="button" onClick={retry}>
+          Try again
+        </button>
+      </div>
+    );
+  if (!parts.length) return <Home trips={trips} />;
+  if (!trips) return <div className="center-screen" aria-busy="true" />;
+  if (!summary)
+    return (
+      <div className="center-screen">
+        <h1>Not found</h1>
+        <Link to="" className="button">
+          All trips
+        </Link>
+      </div>
+    );
+  return <TripView key={summary.id} summary={summary} view={view} params={params} />;
+}
+
+function Home({ trips }) {
   return (
-    <main>
-      <h1>Let's Go Here</h1>
-      <p>Trips I'm planning. Come along.</p>
-      <ul className="trips">
-        {TRIPS.map((t) => (
-          <li key={t.id}><a href={`${BASE}${t.id}`}>{t.name}</a></li>
+    <main className="home">
+      <header className="home-head">
+        <h1>Let's Go Here</h1>
+        <p>Trips I'm planning. Come along.</p>
+      </header>
+      <ul className="home-list" aria-busy={!trips}>
+        {(trips ?? []).map((t) => (
+          <li key={t.id}>
+            <Link to={`${t.id}/`} className="trip-card">
+              {t.hero && <img src={t.hero} alt={t.heroAlt} />}
+              <div className="hero-shade" />
+              <div className="trip-card-body">
+                <p className="hero-kicker">{t.when}</p>
+                <h2>{t.title}</h2>
+                <p>{t.tagline}</p>
+                <span className="trip-card-go">
+                  Open <Icon name="next" size={16} />
+                </span>
+              </div>
+            </Link>
+          </li>
         ))}
+        {!trips && <li className="trip-card trip-card-loading" />}
       </ul>
     </main>
   );
 }
 
-function Trip({ id }) {
-  const [password, setPassword] = useState(() => sessionStorage.getItem('pw') ?? '');
-  const [trip, setTrip] = useState(null);
-  const [error, setError] = useState('');
-
-  async function load(pw) {
-    setError('');
-    try {
-      const res = await fetch(`${WORKER_URL}/trips/${id}`, { headers: { 'x-password': pw } });
-      const body = await res.json();
-      if (!res.ok) return setError(body.error ?? 'Something went wrong');
-      sessionStorage.setItem('pw', pw);
-      setTrip(body);
-    } catch {
-      setError("Couldn't reach the server");
-    }
+// trip data is generated, so one unexpected value shouldn't blank the whole page
+class Boundary extends Component {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
   }
-
-  useEffect(() => {
-    if (password) load(password);
-  }, []);
-
-  if (trip) {
-    return (
-      <main>
-        <a href={BASE}>← All trips</a>
-        <h1>{trip.title}</h1>
-        <p className="tagline">{trip.introduction.headline}</p>
-        <p>{trip.introduction.summary}</p>
-        <p><strong>When:</strong> {trip.window.label}</p>
-        <ul>{trip.introduction.highlights.map((h) => <li key={h}>{h}</li>)}</ul>
-      </main>
+  render() {
+    return this.state.failed ? (
+      <div className="center-screen">
+        <p>Something went wrong showing this page.</p>
+        <button className="button" onClick={() => location.reload()}>
+          Reload
+        </button>
+      </div>
+    ) : (
+      this.props.children
     );
   }
-
-  return (
-    <main>
-      <a href={BASE}>← All trips</a>
-      <form onSubmit={(e) => { e.preventDefault(); load(password); }}>
-        <label htmlFor="pw">Password</label>
-        <input id="pw" type="password" autoFocus value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button>Open</button>
-        {error && <p role="alert" className="error">{error}</p>}
-      </form>
-    </main>
-  );
 }
 
-const path = (location.pathname + '/').slice(BASE.length).replace(/\/$/, '').toLowerCase();
-const page = !path ? <Home /> : TRIPS.some((t) => t.id === path) ? <Trip id={path} /> : <main><h1>Not found</h1><a href={BASE}>Home</a></main>;
-
-createRoot(document.getElementById('root')).render(<StrictMode>{page}</StrictMode>);
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Boundary>
+      <App />
+    </Boundary>
+  </StrictMode>,
+);
