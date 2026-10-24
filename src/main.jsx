@@ -61,6 +61,7 @@ function Home({ trips }) {
         <h1>Let's Go Here</h1>
         <p>Trips I'm thinking about.</p>
       </header>
+      {trips && <p className="home-count">{trips.length === 1 ? '1 trip' : `${trips.length} trips`}</p>}
       <ul className="home-list" aria-busy={!trips}>
         {(trips ?? []).map((t) => (
           <li key={t.id}>
@@ -68,17 +69,19 @@ function Home({ trips }) {
               {t.hero && <img src={t.hero} alt={t.heroAlt} />}
               <div className="hero-shade" />
               <div className="trip-card-body">
-                <p className="hero-kicker">{t.when}</p>
-                <h2>{splitTitle(t.title)[0]}</h2>
-                <p>{t.tagline}</p>
-                <span className="trip-card-go">
-                  Open <Icon name="next" size={16} />
+                <div className="trip-card-text">
+                  <p className="hero-kicker">{t.when}</p>
+                  <h2>{splitTitle(t.title)[0]}</h2>
+                  <p>{t.tagline}</p>
+                </div>
+                <span className="trip-card-go" aria-hidden="true">
+                  <Icon name="next" size={20} />
                 </span>
               </div>
             </Link>
           </li>
         ))}
-        {!trips && <li className="trip-card trip-card-loading" />}
+        {!trips && [0, 1].map((i) => <li key={i} className="trip-card trip-card-loading" />)}
       </ul>
     </main>
   );
