@@ -1,4 +1,4 @@
-import { Component, StrictMode, useEffect, useState } from 'react';
+import { Component, StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 import TripView from './components/TripView.jsx';
@@ -83,7 +83,25 @@ function Home({ trips }) {
         ))}
         {!trips && [0, 1].map((i) => <li key={i} className="trip-card trip-card-loading" />)}
       </ul>
+      <OwnTrip />
     </main>
+  );
+}
+
+function OwnTrip() {
+  const dialog = useRef(null);
+  return (
+    <>
+      <button className="own-trip" onClick={() => dialog.current.showModal()}>
+        Want to plan your own trip?
+      </button>
+      <dialog ref={dialog} className="no-dialog" aria-label="Plan your own trip" onClick={(e) => e.target === dialog.current && dialog.current.close()}>
+        <p>No.</p>
+        <button className="button" onClick={() => dialog.current.close()} autoFocus>
+          OK
+        </button>
+      </dialog>
+    </>
   );
 }
 
