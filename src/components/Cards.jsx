@@ -1,7 +1,7 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 import Icon from './Icon.jsx';
 import { Badge, Selection, Stats } from './Bits.jsx';
-import { LEG_ICON, LEG_MODE, RECOMMENDATION, costLabel, duration, flag, humanize, moneyRange, sharedSuffix } from '../lib/trip.js';
+import { LEG_ICON, LEG_MODE, RECOMMENDATION, costLabel, duration, flag, humanize, money, moneyRange, sharedSuffix } from '../lib/trip.js';
 
 // { trip, open(type, id), goToSection(id) }
 export const TripContext = createContext(null);
@@ -119,38 +119,105 @@ export function Choice({ choice }) {
   );
 }
 
+// What the JSON says an item costs: its single amount, or the middle of its range.
+const planned = (i) =>
+  i.amount_min == null && i.amount_max == null ? null : i.amount_min == null || i.amount_max == null ? (i.amount_min ?? i.amount_max) : (i.amount_min + i.amount_max) / 2;
+
+// slider runs from 0 to about twice the plan, rounded to a friendly number
+function sliderScale(amount) {
+  const raw = Math.max(amount * 2, 100);
+  const mag = 10 ** Math.floor(Math.log10(raw));
+  const max = Math.ceil(raw / mag) * mag;
+  return { max, step: max <= 500 ? 5 : max <= 2000 ? 10 : 25 };
+}
+
+const defaults = (items) => Object.fromEntries(items.map((i) => [i.id, { on: i.included_in_total, amount: planned(i) }]));
+
+// The total is always the sum of the rows; sliders and the "Add" toggles change it live, Reset restores the JSON.
 export function Budget({ items }) {
   const { open } = useTrip();
-  const included = items.filter((i) => i.included_in_total);
-  const extras = items.filter((i) => !i.included_in_total);
+  const [state, setState] = useState(() => defaults(items));
+  const set = (id, patch) => setState((s) => ({ ...s, [id]: { ...s[id], ...patch } }));
   const currency = items[0]?.currency ?? 'USD';
-  const perPerson = included.every((i) => i.basis === 'per-person');
-  const sum = (k) => included.reduce((t, i) => (t == null || i[k] == null ? null : t + i[k] * (i.quantity ?? 1)), 0);
-  const [min, max] = [sum('amount_min'), sum('amount_max')];
-  const top = Math.max(...included.map((i) => i.amount_max ?? i.amount_min ?? 0));
+  const value = (i) => state[i.id].amount * (i.quantity ?? 1);
+
+  const counted = items.filter((i) => state[i.id].on && state[i.id].amount != null);
+  const total = counted.reduce((t, i) => t + value(i), 0);
+  const tbd = items.filter((i) => state[i.id].on && state[i.id].amount == null).length;
+  const perPerson = counted.every((i) => i.basis === 'per-person');
+  const changed = items.some((i) => state[i.id].on !== i.included_in_total || state[i.id].amount !== planned(i));
+
+  const plan = items.filter((i) => i.included_in_total);
+  const planSum = (k) => plan.reduce((t, i) => (t == null || i[k] == null ? null : t + i[k] * (i.quantity ?? 1)), 0);
+  const [planMin, planMax] = [planSum('amount_min'), planSum('amount_max')];
   const scenario = sharedSuffix(items);
-  const row = (i) => (
-    <li key={i.id}>
-      <button className="budget-row" onClick={() => open('cost', i.id)}>
-        <span className="budget-label">{costLabel(i, items)}</span>
-        <span className="budget-amount">{moneyRange(i.amount_min, i.amount_max, i.currency)}</span>
-        {i.included_in_total && <span className="budget-bar" style={{ '--w': `${((i.amount_max ?? i.amount_min ?? 0) / top) * 100}%` }} />}
-      </button>
-    </li>
-  );
+
+  // sorted once by the JSON amounts, so rows never jump around under a finger
+  const byPlan = (a, b) => (planned(b) ?? 0) - (planned(a) ?? 0);
+  const included = items.filter((i) => i.included_in_total).sort(byPlan);
+  const extras = items.filter((i) => !i.included_in_total);
+
+  const row = (i) => {
+    const { on, amount } = state[i.id];
+    const label = costLabel(i, items);
+    const { max, step } = sliderScale(planned(i) ?? 0);
+    return (
+      <li key={i.id} className={`budget-item${on ? '' : ' off'}`}>
+        <div className="budget-row">
+          <button className="budget-label" onClick={() => open('cost', i.id)}>
+            {label}
+          </button>
+          <span className="budget-amount">{amount == null ? 'TBD' : money(value(i), i.currency)}</span>
+        </div>
+        {amount != null && (
+          <input type="range" className="budget-slider" min="0" max={max} step={step} value={amount} disabled={!on}
+            aria-label={`${label} amount`} aria-valuetext={money(amount, i.currency)}
+            style={{ '--p': `${Math.min(100, (amount / max) * 100)}%` }}
+            onChange={(e) => set(i.id, { amount: Number(e.target.value) })} />
+        )}
+        {(i.amount_min !== i.amount_max || !i.included_in_total) && (
+          <div className="budget-meta">
+            {i.amount_min !== i.amount_max && <span>Plan: {moneyRange(i.amount_min, i.amount_max, i.currency)}</span>}
+            {!i.included_in_total && (
+              <button className="chip budget-toggle" aria-pressed={on} onClick={() => set(i.id, { on: !on })}>
+                {on ? (
+                  <>
+                    <Icon name="check" size={14} /> Added
+                  </>
+                ) : (
+                  '+ Add'
+                )}
+              </button>
+            )}
+          </div>
+        )}
+      </li>
+    );
+  };
+
   return (
     <div className="budget">
       <div className="budget-total">
-        <span className="budget-total-num">{min == null ? 'TBD' : moneyRange(min, max, currency)}</span>
+        <div className="budget-total-top">
+          <span className="budget-total-num" aria-live="polite">
+            {counted.length ? money(total, currency) : 'TBD'}
+            {tbd > 0 && counted.length > 0 && '+'}
+          </span>
+          <button className="text-link budget-reset" onClick={() => setState(defaults(items))} disabled={!changed}>
+            Reset
+          </button>
+        </div>
         <span className="budget-total-label">
-          {perPerson ? 'per person' : 'total'} · sum of {included.length} estimated items
+          {perPerson ? 'per person' : 'total'} · {changed ? 'with your changes' : `sum of ${counted.length} items`}
+          {tbd > 0 && ` · ${tbd} TBD`}
         </span>
+        {planMin != null && planMin !== planMax && <span className="budget-plan">Plan: {moneyRange(planMin, planMax, currency)}</span>}
         {scenario && <span className="budget-scenario">{humanize(scenario)}</span>}
       </div>
-      <ul className="budget-list">{included.sort((a, b) => (b.amount_max ?? 0) - (a.amount_max ?? 0)).map(row)}</ul>
+      <ul className="budget-list">{included.map(row)}</ul>
       {extras.length > 0 && (
         <>
-          <h4 className="budget-sub">Optional extras, not in the total</h4>
+          <h4 className="budget-sub">Not in the total</h4>
           <ul className="budget-list">{extras.map(row)}</ul>
         </>
       )}

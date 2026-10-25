@@ -824,29 +824,106 @@ button {
   padding: 0;
   list-style: none;
 }
-.budget-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 6px 12px;
-  width: 100%;
-  padding: 12px 0;
+.budget-item {
+  padding: 12px 0 6px;
   border-bottom: 1px solid var(--line);
 }
-li:last-child > .budget-row {
+li.budget-item:last-child {
   border-bottom: 0;
 }
+.budget-item.off .budget-label,
+.budget-item.off .budget-amount {
+  color: var(--muted);
+}
+.budget-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
 .budget-label {
+  flex: 1;
+  min-width: 0;
   font-size: 15.5px;
 }
 .budget-amount {
   font-weight: 650;
   font-variant-numeric: tabular-nums;
 }
-.budget-bar {
-  grid-column: 1 / -1;
-  height: 5px;
+/* the old proportion bar is now the slider track: fill = --p */
+.budget-slider {
+  display: block;
+  width: 100%;
+  height: 36px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.budget-slider::-webkit-slider-runnable-track {
+  height: 6px;
   border-radius: 999px;
-  background: linear-gradient(to right, var(--accent) var(--w), var(--mute-soft) var(--w));
+  background: linear-gradient(to right, var(--accent) var(--p), var(--mute-soft) var(--p));
+}
+.budget-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--accent) var(--p), var(--mute-soft) var(--p));
+}
+.budget-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 26px;
+  height: 26px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0.5px solid rgb(0 0 0 / 0.12);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+}
+.budget-slider::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0.5px solid rgb(0 0 0 / 0.12);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+}
+.budget-slider:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.budget-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 28px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.budget-toggle {
+  min-height: 32px;
+  margin-left: auto;
+  font-size: 14px;
+}
+.budget-total-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.budget-reset {
+  min-height: 40px;
+  padding: 0 4px;
+}
+.budget-reset:disabled {
+  color: var(--muted);
+  opacity: 0.5;
+}
+.budget-plan {
+  font-size: 13.5px;
+  color: var(--muted);
 }
 .budget-sub {
   margin-top: 18px;
