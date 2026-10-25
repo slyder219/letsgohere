@@ -18,6 +18,10 @@ const SYNONYMS = {
   boat: ['cruise', 'kayak', 'navigation'], kayak: ['kayaking', 'paddling'],
   animals: ['wildlife', 'puma', 'condor'], wildlife: ['puma', 'condor'], horse: ['riding', 'horseback'],
   pack: ['gear', 'carry'], packing: ['gear'], bring: ['gear', 'carry'], gear: ['equipment', 'boots', 'crampons'],
+  aurora: ['northern', 'lights', 'aurora'], northern: ['aurora'], lights: ['aurora'],
+  husky: ['sledding', 'dogs', 'sled'], dogs: ['husky', 'sledding'], reindeer: ['sledding', 'sami'], sled: ['sledding', 'husky', 'reindeer'],
+  snowmobile: ['snowmobiling', 'snowmobile'], ski: ['skiing', 'skis'], snowshoe: ['snowshoeing'], sauna: ['sauna', 'saunas'],
+  train: ['rail', 'sleeper', 'night'], sleeper: ['train'], cabin: ['cabin', 'igloo', 'lodge'], igloo: ['igloo', 'glass'],
   food: ['meals', 'food', 'supplies'], eat: ['food', 'meals'],
 };
 const STOP = new Set('a an and are as at be can do does for from how i in is it of on or should the to was we what where which who will with you'.split(' '));

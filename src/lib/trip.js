@@ -59,7 +59,10 @@ export const SECTION_KIND = {
 
 export const TRIP_STATUS = { idea: 'Idea', planning: 'Planning', scheduled: 'Scheduled', completed: 'Completed', cancelled: 'Cancelled' };
 
-export const LEG_MODE = { flight: 'Fly', drive: 'Drive', bus: 'Bus', boat: 'Boat', train: 'Train', walk: 'Walk' };
+export const LEG_MODE = { flight: 'Fly', drive: 'Drive', bus: 'Bus', boat: 'Boat', train: 'Train', walk: 'Walk', snowmobile: 'Snowmobile', sled: 'Sled', ski: 'Ski' };
+
+// route icon per leg mode; anything unlisted shows the car
+export const LEG_ICON = { flight: 'flight', train: 'train', snowmobile: 'snow', sled: 'snow', ski: 'snow' };
 
 export const humanize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1).replace(/[-_]/g, ' ') : '');
 

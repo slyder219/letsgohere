@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import Icon from './Icon.jsx';
 import { Badge, Selection, Stats } from './Bits.jsx';
-import { LEG_MODE, RECOMMENDATION, costLabel, duration, flag, humanize, moneyRange, sharedSuffix } from '../lib/trip.js';
+import { LEG_ICON, LEG_MODE, RECOMMENDATION, costLabel, duration, flag, humanize, moneyRange, sharedSuffix } from '../lib/trip.js';
 
 // { trip, open(type, id), goToSection(id) }
 export const TripContext = createContext(null);
@@ -57,7 +57,7 @@ export function Route({ legs }) {
         <li key={i}>
           {leg && (
             <button className="route-leg" onClick={() => open('leg', leg.id)}>
-              <Icon name={leg.mode === 'flight' ? 'flight' : 'drive'} size={16} />
+              <Icon name={LEG_ICON[leg.mode] ?? 'drive'} size={16} />
               <span>{LEG_MODE[leg.mode] ?? humanize(leg.mode)}</span>
               {duration(leg.duration_minutes) && <span className="muted">· {duration(leg.duration_minutes)}</span>}
             </button>
