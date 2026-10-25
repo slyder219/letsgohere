@@ -1,5 +1,6 @@
 import Icon from './Icon.jsx';
 import { EVIDENCE, SELECTION, duration, km, meters } from '../lib/trip.js';
+import { mediaUrl } from '../lib/api.js';
 
 export function Badge({ tone = 'muted', children }) {
   return <span className={`badge tone-${tone}`}>{children}</span>;
@@ -57,7 +58,7 @@ export function Fact({ fact, trip }) {
 export function Img({ media, className = '', eager = false }) {
   if (!media) return null;
   return (
-    <img className={className} src={media.url} alt={media.alt} loading={eager ? 'eager' : 'lazy'} decoding="async"
+    <img className={className} src={mediaUrl(media.url)} alt={media.alt} loading={eager ? 'eager' : 'lazy'} decoding="async"
       fetchPriority={eager ? 'high' : undefined} />
   );
 }

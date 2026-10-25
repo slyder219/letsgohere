@@ -1561,3 +1561,11 @@ mark {
   width: 100%;
   margin-top: 24px;
 }
+
+.gate-pin {
+  letter-spacing: 0.3em;
+  font-variant-numeric: tabular-nums;
+}
+.gate-pin::placeholder {
+  letter-spacing: 0.3em;
+}

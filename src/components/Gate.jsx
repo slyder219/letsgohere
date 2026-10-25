@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import Icon from './Icon.jsx';
-import { login } from '../lib/api.js';
 import { Link } from '../lib/router.jsx';
 import { splitTitle } from '../lib/trip.js';
 
-export default function Gate({ summary, onToken }) {
+// Password screen for the whole site (numeric PIN) and for trips with their own password.
+// `account` is the hidden username: iOS keychain keeps one saved password per account.
+export default function Gate({ title, kicker, text, image, account, numeric = false, back = false, onSubmit }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
-  const [name, subtitle] = splitTitle(summary.title);
+  const [name, subtitle] = splitTitle(title);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ export default function Gate({ summary, onToken }) {
     setBusy(true);
     setError('');
     try {
-      onToken(await login(summary.id, password));
+      await onSubmit(password);
     } catch (err) {
       setError(err.message);
       setBusy(false);
@@ -25,23 +26,30 @@ export default function Gate({ summary, onToken }) {
 
   return (
     <div className="gate">
-      {summary.hero && <img className="gate-img" src={summary.hero} alt="" />}
+      {image && <img className="gate-img" src={image} alt="" />}
       <div className="hero-shade" />
-      <Link to="" className="gate-back" aria-label="All trips">
-        <Icon name="back" size={22} />
-      </Link>
+      {back && (
+        <Link to="" className="gate-back" aria-label="All trips">
+          <Icon name="back" size={22} />
+        </Link>
+      )}
       <form className="gate-card" onSubmit={submit}>
-        <p className="hero-kicker">{summary.when}</p>
+        {kicker && <p className="hero-kicker">{kicker}</p>}
         <h1 className={`hero-title${name.length > 14 ? ' hero-title-long' : ''}`}>{name}</h1>
         {subtitle && <p className="hero-subtitle">{subtitle}</p>}
-        <p className="gate-text">Enter the password I sent you.</p>
-        {/* a username field lets iOS save the password to the keychain */}
-        <input type="text" name="username" autoComplete="username" value="friends" readOnly hidden />
-        <label htmlFor="password" className="visually-hidden">Password</label>
+        <p className="gate-text">{text}</p>
+        <input type="text" name="username" autoComplete="username" value={account} readOnly hidden />
+        <label htmlFor="password" className="visually-hidden">
+          Password
+        </label>
         <div className="gate-field">
-          <input id="password" name="password" type="password" autoComplete="current-password" placeholder="Password"
-            enterKeyHint="go" value={password} onChange={(e) => setPassword(e.target.value)} aria-invalid={!!error}
-            aria-describedby={error ? 'gate-error' : undefined} />
+          <input id="password" name="password" type="password" autoComplete="current-password" enterKeyHint="go"
+            placeholder={numeric ? '••••' : 'Password'}
+            // numeric: iOS and Android open the number pad instead of the full keyboard
+            inputMode={numeric ? 'numeric' : undefined} pattern={numeric ? '[0-9]*' : undefined}
+            className={numeric ? 'gate-pin' : undefined}
+            value={password} onChange={(e) => setPassword(numeric ? e.target.value.replace(/\D/g, '') : e.target.value)}
+            aria-invalid={!!error} aria-describedby={error ? 'gate-error' : undefined} />
           <button className="button" disabled={busy || !password.trim()}>
             {busy ? 'Opening…' : 'Open'}
           </button>

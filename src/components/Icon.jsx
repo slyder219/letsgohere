@@ -21,6 +21,7 @@ const PATHS = {
   choice: 'M6 3v6a6 6 0 0 0 6 6h0a6 6 0 0 1 6 6M18 3v6a6 6 0 0 1-3 5.2M15 6l3-3 3 3M3 6l3-3 3 3',
   external: 'M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5',
   check: 'M5 12l5 5 9-10',
+  lock: 'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5zM12 15v2',
   guide: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',
   gear: 'M6 8h12l1 12H5zM9 8V6a3 3 0 0 1 6 0v2',
   source: 'M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7',

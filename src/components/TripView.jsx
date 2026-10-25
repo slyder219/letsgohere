@@ -6,7 +6,7 @@ import Search from './Search.jsx';
 import Sheet from './Sheet.jsx';
 import Gate from './Gate.jsx';
 import { TripContext } from './Cards.jsx';
-import { AuthError, fetchTrip, savedToken } from '../lib/api.js';
+import { AuthError, fetchTrip, loginTrip, mediaUrl, tripToken } from '../lib/api.js';
 import { Link, navigate } from '../lib/router.jsx';
 import { indexTrip, splitTitle } from '../lib/trip.js';
 
@@ -16,33 +16,44 @@ const VIEWS = [
   ['search', 'Search', 'search'],
 ];
 
-export default function TripView({ summary, view, params }) {
-  const [token, setToken] = useState(() => savedToken(summary.id));
+export default function TripView({ summary, view, params, onSignedOut }) {
+  // the site password is already in; locked trips also need their own
+  const [unlocked, setUnlocked] = useState(() => !summary.locked || !!tripToken(summary.id));
   const [trip, setTrip] = useState(null);
   const [error, setError] = useState(null);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    if (!token) return;
+    if (!unlocked) return;
     let live = true;
     setError(null);
-    fetchTrip(summary.id, token)
+    fetchTrip(summary.id)
       .then((t) => live && setTrip(indexTrip(t)))
       .catch((e) => {
         if (!live) return;
-        if (e instanceof AuthError) setToken(null);
-        else setError(e.message);
+        if (!(e instanceof AuthError)) setError(e.message);
+        else if (e.need === 'site') onSignedOut();
+        else setUnlocked(false);
       });
     return () => {
       live = false;
     };
-  }, [summary.id, token]);
+  }, [summary.id, unlocked, attempt]);
 
-  if (!token) return <Gate summary={summary} onToken={setToken} />;
+  if (!unlocked)
+    return (
+      <Gate title={summary.title} kicker={summary.when} image={mediaUrl(summary.hero)} account={summary.id} back
+        text="This one has its own password."
+        onSubmit={async (password) => {
+          await loginTrip(summary.id, password);
+          setUnlocked(true);
+        }} />
+    );
   if (error)
     return (
       <div className="center-screen">
         <p>{error}</p>
-        <button className="button" onClick={() => setToken(savedToken(summary.id))}>
+        <button className="button" onClick={() => setAttempt((a) => a + 1)}>
           Try again
         </button>
       </div>
@@ -54,7 +65,7 @@ export default function TripView({ summary, view, params }) {
 function Loading({ summary }) {
   return (
     <div className="hero hero-loading" aria-busy="true">
-      {summary.hero && <img className="hero-img" src={summary.hero} alt="" />}
+      {summary.hero && <img className="hero-img" src={mediaUrl(summary.hero)} alt="" />}
       <div className="hero-shade" />
       <div className="hero-body">
         <h1 className="hero-title hero-title-long">{splitTitle(summary.title)[0]}</h1>

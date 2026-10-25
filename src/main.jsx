@@ -2,28 +2,33 @@ import { Component, StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 import TripView from './components/TripView.jsx';
+import Gate from './components/Gate.jsx';
 import Icon from './components/Icon.jsx';
-import { listTrips } from './lib/api.js';
+import { AuthError, listTrips, loginSite, mediaUrl, siteToken } from './lib/api.js';
 import { splitTitle } from './lib/trip.js';
 import { Link, useLocation } from './lib/router.jsx';
 
 // The trip list comes from the Worker, so adding a trip folder there is enough to give it a page here.
-function useTrips() {
+function useTrips(signedIn, onSignedOut) {
   const [state, setState] = useState({ trips: null, error: null });
   const load = () => {
+    if (!signedIn) return;
     setState({ trips: null, error: null });
     listTrips().then(
       (trips) => setState({ trips, error: null }),
-      (e) => setState({ trips: null, error: e.message }),
+      (e) => (e instanceof AuthError ? onSignedOut() : setState({ trips: null, error: e.message })),
     );
   };
-  useEffect(load, []);
+  useEffect(load, [signedIn]);
   return { ...state, retry: load };
 }
 
 function App() {
   const { parts, params } = useLocation();
-  const { trips, error, retry } = useTrips();
+  // everything, including which trips exist, sits behind the site password
+  const [signedIn, setSignedIn] = useState(() => !!siteToken());
+  const signOut = () => setSignedIn(false);
+  const { trips, error, retry } = useTrips(signedIn, signOut);
   const summary = trips?.find((t) => t.id === parts[0]);
   const view = ['explore', 'search'].includes(parts[1]) ? parts[1] : '';
 
@@ -31,6 +36,14 @@ function App() {
     if (!parts.length) document.title = "Let's Go Here";
   }, [parts.length]);
 
+  if (!signedIn)
+    return (
+      <Gate title="Let's Go Here" text="Password is my birthday." account="letsgohere" numeric
+        onSubmit={async (password) => {
+          await loginSite(password);
+          setSignedIn(true);
+        }} />
+    );
   if (error)
     return (
       <div className="center-screen">
@@ -51,7 +64,7 @@ function App() {
         </Link>
       </div>
     );
-  return <TripView key={summary.id} summary={summary} view={view} params={params} />;
+  return <TripView key={summary.id} summary={summary} view={view} params={params} onSignedOut={signOut} />;
 }
 
 function Home({ trips }) {
@@ -66,7 +79,7 @@ function Home({ trips }) {
         {(trips ?? []).map((t) => (
           <li key={t.id}>
             <Link to={`${t.id}/`} className="trip-card">
-              {t.hero && <img src={t.hero} alt={t.heroAlt} />}
+              {t.hero && <img src={mediaUrl(t.hero)} alt={t.heroAlt} />}
               <div className="hero-shade" />
               <div className="trip-card-body">
                 <div className="trip-card-text">
@@ -74,8 +87,8 @@ function Home({ trips }) {
                   <h2>{splitTitle(t.title)[0]}</h2>
                   <p>{t.tagline}</p>
                 </div>
-                <span className="trip-card-go" aria-hidden="true">
-                  <Icon name="next" size={20} />
+                <span className="trip-card-go" aria-hidden={!t.locked} aria-label={t.locked ? 'Has its own password' : undefined}>
+                  <Icon name={t.locked ? 'lock' : 'next'} size={t.locked ? 18 : 20} />
                 </span>
               </div>
             </Link>
@@ -96,7 +109,7 @@ function OwnTrip() {
         Want to plan your own trip?
       </button>
       <dialog ref={dialog} className="no-dialog" aria-label="Plan your own trip" onClick={(e) => e.target === dialog.current && dialog.current.close()}>
-        <p>No.</p>
+        <p>No</p>
         <button className="button" onClick={() => dialog.current.close()} autoFocus>
           OK
         </button>
