@@ -1442,8 +1442,19 @@ mark {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  /* no swiping with a mouse: cards and photos sit in the text column and wrap instead of scrolling */
+  .rail,
   .gallery {
-    grid-auto-columns: 46%;
+    max-width: calc(var(--measure) + var(--gutter) * 2);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (min-width: 1100px) {
@@ -1474,16 +1485,15 @@ mark {
   }
   .chapter.has-media .rail {
     grid-area: rail;
-    padding-inline: 0;
   }
   .chapter.has-media .gallery {
     grid-area: gallery;
-    padding-inline: 0;
   }
-  .rail {
-    max-width: 1320px;
-    margin-inline: auto;
-    padding-inline: 40px;
+  .chapter.has-media .rail,
+  .chapter.has-media .gallery {
+    max-width: none;
+    margin: 0;
+    padding-inline: 0;
   }
   .sheet-panel {
     inset: 0 0 0 auto;
