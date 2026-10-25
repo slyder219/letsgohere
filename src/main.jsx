@@ -53,7 +53,8 @@ function App() {
         </button>
       </div>
     );
-  if (!parts.length) return <Home trips={trips} />;
+  // hidden trips stay in `trips` so their exact links still open; they just get no card
+  if (!parts.length) return <Home trips={trips?.filter((t) => !t.hidden)} />;
   if (!trips) return <div className="center-screen" aria-busy="true" />;
   if (!summary)
     return (
