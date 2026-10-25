@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/prerender.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "images": "node scripts/compress-images.mjs"
   },
   "dependencies": {
     "minisearch": "^7.2.0",
