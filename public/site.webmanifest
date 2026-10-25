@@ -1,6 +1,7 @@
 {
   "name": "Let's Go Here",
   "short_name": "Let's Go",
+  "description": "Trips I'm thinking about, shared with family and friends.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

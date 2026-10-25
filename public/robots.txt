@@ -1,0 +1,5 @@
+# Only the front door is public; every trip sits behind a password.
+User-agent: *
+Allow: /
+
+Sitemap: https://letsgohere.site/sitemap.xml

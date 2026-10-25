@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp dist/index.html dist/404.html",
+    "build": "vite build && sed 's#<head>#<head><meta name=\"robots\" content=\"noindex\" />#' dist/index.html > dist/404.html",
     "preview": "vite preview",
     "images": "node scripts/compress-images.mjs"
   },
