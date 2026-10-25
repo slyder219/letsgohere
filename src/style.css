@@ -1668,6 +1668,7 @@ mark {
   width: 72px;
   height: 72px;
   border-radius: 16px;
+  background: #fff; /* the icon is transparent; a white tile like the iOS home screen */
   box-shadow: var(--shadow);
 }
 .pin-card h1 {
