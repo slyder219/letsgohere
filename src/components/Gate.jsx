@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { sitePinLength } from '../lib/api.js';
 import Icon from './Icon.jsx';
 import { Link } from '../lib/router.jsx';
 import { splitTitle } from '../lib/trip.js';
@@ -61,5 +62,70 @@ export default function Gate({ title, kicker, text, image, account, numeric = fa
         )}
       </form>
     </div>
+  );
+}
+
+// The site's front door, styled like the iPhone passcode screen: dots fill as digits are typed and it
+// submits on the last one. A real (invisible) numeric password field sits on top, so the number pad,
+// keychain autofill and paste all work. The PIN length comes from the Worker; without it, an Open button.
+export function PinGate({ title, text, onSubmit }) {
+  const [length, setLength] = useState(null);
+  const [lengthFailed, setLengthFailed] = useState(false);
+  useEffect(() => {
+    sitePinLength().then(setLength, () => setLengthFailed(true));
+  }, []);
+  const [pin, setPin] = useState('');
+  const [error, setError] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [shake, setShake] = useState(0);
+
+  const submit = async (value) => {
+    setBusy(true);
+    setError('');
+    try {
+      await onSubmit(value);
+    } catch (err) {
+      setError(err.message);
+      setPin('');
+      setShake((n) => n + 1);
+      setBusy(false);
+    }
+  };
+
+  const change = (e) => {
+    if (busy) return;
+    const value = e.target.value.replace(/\D/g, '').slice(0, length ?? undefined);
+    setPin(value);
+    if (error) setError('');
+    if (length && value.length === length) submit(value);
+  };
+
+  return (
+    <main className="pin-gate">
+      <form className="pin-card" onSubmit={(e) => { e.preventDefault(); if (pin) submit(pin); }}>
+        <img className="pin-icon" src="/apple-touch-icon.png" alt="" width="72" height="72" />
+        <h1>{title}</h1>
+        <p className="pin-text">{text}</p>
+        <input type="text" name="username" autoComplete="username" value="letsgohere" readOnly hidden />
+        <label className="pin-field" htmlFor="pin">
+          <span key={shake} className={`pin-dots${shake ? ' shake' : ''}`} aria-hidden="true">
+            {Array.from({ length: length ?? Math.max(pin.length, 4) }, (_, i) => (
+              <span key={i} className={i < pin.length ? 'filled' : undefined} />
+            ))}
+          </span>
+          <input id="pin" className="pin-input" type="password" inputMode="numeric" pattern="[0-9]*" autoComplete="current-password"
+            enterKeyHint="go" maxLength={length ?? undefined} autoFocus value={pin} onChange={change} readOnly={busy}
+            aria-label="Password" aria-invalid={!!error} aria-describedby="pin-status" />
+        </label>
+        <p id="pin-status" className={`pin-status${error ? ' pin-error' : ''}`} role={error ? 'alert' : undefined}>
+          {error || (busy ? 'Checking…' : 'Tap the dots to type')}
+        </p>
+        {lengthFailed && (
+          <button className="button" disabled={busy || !pin}>
+            Open
+          </button>
+        )}
+      </form>
+    </main>
   );
 }

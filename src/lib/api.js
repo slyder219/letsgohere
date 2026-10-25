@@ -70,4 +70,5 @@ export async function loginTrip(id, password) {
 }
 
 export const listTrips = () => call('/trips');
+export const sitePinLength = () => call('/site').then((s) => s.pinLength);
 export const fetchTrip = (id) => call(`/trips/${id}`, {}, id);

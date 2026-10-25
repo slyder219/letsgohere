@@ -1646,3 +1646,102 @@ mark {
 .gate-pin::placeholder {
   letter-spacing: 0.3em;
 }
+
+/* ---------- site PIN gate ---------- */
+.pin-gate {
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  /* sits in the top part of the screen so the number pad never covers it */
+  padding: calc(var(--safe-t) + 11vh) var(--gutter) var(--safe-b);
+  background: var(--bg);
+}
+.pin-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+}
+.pin-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+.pin-card h1 {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: 34px;
+  letter-spacing: -0.015em;
+}
+.pin-text {
+  margin-top: 8px;
+  font-size: 17px;
+  color: var(--muted);
+}
+.pin-field {
+  position: relative;
+  display: block;
+  margin-top: 32px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  cursor: text;
+}
+.pin-field:focus-within {
+  background: var(--mute-soft);
+}
+.pin-dots {
+  display: flex;
+  gap: 22px;
+}
+.pin-dots span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  transition: background 0.12s, transform 0.12s var(--ease);
+}
+.pin-dots span.filled {
+  background: var(--ink);
+  transform: scale(1.08);
+}
+.pin-dots.shake {
+  animation: shake 0.42s var(--ease);
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(9px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(3px); }
+}
+/* the real input covers the dots: tapping anywhere on them opens the number pad */
+.pin-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: 0;
+  font-size: 16px; /* 16px+ stops iOS zooming on focus */
+  caret-color: transparent;
+  color: transparent;
+  background: transparent;
+}
+.pin-status {
+  min-height: 24px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.pin-error {
+  color: #c2410c;
+  font-weight: 600;
+}
+@media (prefers-color-scheme: dark) {
+  .pin-error {
+    color: #fdba74;
+  }
+}

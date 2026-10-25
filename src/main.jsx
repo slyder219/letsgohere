@@ -2,7 +2,7 @@ import { Component, StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 import TripView from './components/TripView.jsx';
-import Gate from './components/Gate.jsx';
+import { PinGate } from './components/Gate.jsx';
 import Icon from './components/Icon.jsx';
 import { AuthError, listTrips, loginSite, mediaUrl, siteToken } from './lib/api.js';
 import { splitTitle } from './lib/trip.js';
@@ -38,7 +38,7 @@ function App() {
 
   if (!signedIn)
     return (
-      <Gate title="Let's Go Here" text="Password is my birthday." account="letsgohere" numeric
+      <PinGate title="Let's Go Here" text="Password is my birthday."
         onSubmit={async (password) => {
           await loginSite(password);
           setSignedIn(true);
